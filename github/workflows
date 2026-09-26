@@ -1,0 +1,13 @@
+name: Basic GHA Pipeline
+
+on:
+  push:
+    branches: ["main"]
+
+job: 
+  basic: 
+    runs-on: ["ubuntu-26.04"]
+    steps:
+      name: Basic GHA pipeline
+      run echo "My GHA pipeline"
+    
