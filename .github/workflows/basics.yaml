@@ -9,4 +9,4 @@ job:
     runs-on: "ubuntu-26.04"
     steps:
       name: Basic GHA pipeline
-      run echo "My GHA pipeline"
+      run: echo "My GHA pipeline"
