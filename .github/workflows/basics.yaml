@@ -4,9 +4,9 @@ on:
   push:
     branches: ["main"]
 
-jobs: 
-  basic: 
-    runs-on: "ubuntu-26.04"
+jobs:
+  basic:
+    runs-on: “ubuntu-26.04"
     steps:
-      name: Basic GHA pipeline
-      run: echo "My GHA pipeline"
+      - name: Basic GHA pipeline
+        run: echo "My First GHA pipeline"
