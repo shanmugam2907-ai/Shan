@@ -1,4 +1,4 @@
-name: Node Pipeline
+- name: Node Pipeline
 
 on:
   workflow_dispatch:  
