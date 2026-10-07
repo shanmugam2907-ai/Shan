@@ -1,0 +1,39 @@
+name: Node Pipeline
+
+on:
+  workflow_dispatch:  
+
+jobs:
+  node:
+    runs-on: ["wsl-ubuntu-pvk"]
+    strategy:
+      matrix:
+        node-version: [24, 26]
+
+    steps:
+      - name: Clone the code
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Create .env files
+        run: |
+          echo "PORT=8080" >> .env.development
+          echo "APP=GHA-DEV-APP" >> .env.development
+          echo "PORT=5000" >> .env.production
+          echo "APP=GHA-PROD-APP" >> .env.production
+          
+      - name: Run Node Application
+        run: |
+          node app.js &
+          sleep 5
+          curl http://localhost:8080
+          curl http://localhost:8080/health
+          pkill -f "node app.js"
+          
